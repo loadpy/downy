@@ -1,7 +1,7 @@
 Contributing
 ============
 
-loadpy is a community project, hence all contributions are more than
+downy is a community project, hence all contributions are more than
 welcome!
 
 Bug reporting
@@ -11,18 +11,18 @@ Not only things break all the time, but also different people have different
 use cases for the project. If you find anything that doesn't work as expected
 or have suggestions, please refer to the `issue tracker`_ on GitHub.
 
-.. _`issue tracker`: https://github.com/JhaPrajjwal/loadpy/issues
+.. _`issue tracker`: https://github.com/JhaPrajjwal/downy/issues
 
 
 Code writing
 ------------
 
 Code contributions are welcome! If you are looking for a place to start,
-help us fixing bugs in loadpy and check out the `"easy" tag`_. Those
+help us fixing bugs in downy and check out the `"easy" tag`_. Those
 should be easier to fix than the others and require less knowledge about the
 library.
 
-.. _`"easy" tag`: https://github.com/JhaPrajjwal/loadpy/issues?q=is%3Aissue+is%3Aopen+label%3Aeasy
+.. _`"easy" tag`: https://github.com/JhaPrajjwal/downy/issues?q=is%3Aissue+is%3Aopen+label%3Aeasy
 
 You will also need to understand how git works. git is a decentralized
 version control system that preserves the history of the software, helps
@@ -40,12 +40,12 @@ to read other good examples on how to do it. The purpose is to describe
 without too much code what you are trying to accomplish to justify the
 effort and to make it understandable to a broader audience.
 
-.. _`wiki`: https://github.com/JhaPrajjwal/loadpy/wiki
+.. _`wiki`: https://github.com/JhaPrajjwal/downy/wiki
 
 All new features should be thoroughly tested, and in the ideal case the
 coverage rate should increase or stay the same. Automatic services will ensure
 your code works on all the operative systems and package combinations
-loadpy support - specifically, note that loadpy is a Python 3 only
+downy support - specifically, note that downy is a Python 3 only
 library.
 
 Development environment
@@ -55,10 +55,10 @@ These are some succint steps to set up a development environment:
 
 1. `Install git <https://git-scm.com/>`_ on your computer.
 2. `Register to GitHub <https://github.com/>`_.
-3. `Fork loadpy <https://help.github.com/articles/fork-a-repo/>`_.
+3. `Fork downy <https://help.github.com/articles/fork-a-repo/>`_.
 4. `Clone your fork <https://help.github.com/articles/cloning-a-repository/>`_.
 5. Install it in development mode using
-   :code:`pip install --editable /path/to/loadpy/[dev]` (this means that the
+   :code:`pip install --editable /path/to/downy/[dev]` (this means that the
    installed code will change as soon as you change it in the download
    location).
 6. Create a new branch.

@@ -1,7 +1,7 @@
-Code of Conduct for the loadpy community
+Code of Conduct for the downy community
 ===========================================
 
-The community of participants in loadpy is made up of members from around
+The community of participants in downy is made up of members from around
 the globe with a diverse set of skills, personalities, and experiences. It is
 through these differences that our community experiences success and continued
 growth. We expect everyone in our community to follow these guidelines when
@@ -53,6 +53,6 @@ associated social events, and one-to-one interactions.
 Parts of this code of conduct have been adapted from the Astropy code of
 conduct.
 
-The Code of Conduct for the loadpy community is licensed under a Creative
+The Code of Conduct for the downy community is licensed under a Creative
 Commons Attribution 4.0 International License. We encourage other communities
 related to ours to use or adapt this code as they see fit.

@@ -1,11 +1,11 @@
-import loadpy
+import downy
 
 import alabaster
 
-project = 'loadpy'
+project = 'downy'
 copyright = '2018, Shreyas Bapat'
 
-version = loadpy.__version__
+version = downy.__version__
 
 release = version
 highlight_language = 'python'
@@ -28,7 +28,7 @@ html_theme = 'alabaster'
 
 html_theme_path = [alabaster.get_path()]
 
-html_title = "LoadPy"
+html_title = "downy"
 
 html_sidebars = {
     '**': [
