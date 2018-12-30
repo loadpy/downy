@@ -25,8 +25,6 @@ and `chat`_.
 .. _`mailing list`: https://groups.io/g/downy-dev
 .. _`chat`: https://riot.im/experimental/#/room/#rest:matrix.org
 
-.. include:: form.rst
-
 The `source code`_, `issue tracker`_ and `wiki`_ are hosted on GitHub, and all
 contributions and feedback are more than welcome.
 
@@ -42,16 +40,6 @@ the MIT license, hence allowing commercial use of the library.
     from downy.download import Download
 
     Download(url, filename).download()
-
-Contents
---------
-
-.. toctree::
-    :maxdepth: 2
-
-    about
-    getting_started
-    changelog
 
 
 .. note::
