@@ -1,63 +1,79 @@
 import os
 import requests
 import threading
-import psutil # to get number of cores
+import psutil
 
-cores = psutil.cpu_count()
-# print(cores)
+# Todo: Create a better stoppable thread class.
+class StoppableThread(threading.Thread):
+    """Thread class with a stop() method. The thread itself has to check
+    regularly for the stopped() condition."""
 
-def get_info():
-    data = {}
-    data['url'] = input("Enter URL: ")
-    data['name'] = input("Save as: ")
-    return data
+    def __init__(self):
+        super(StoppableThread, self).__init__()
+        self._stop_event = threading.Event()
 
-def download_chunk(headers, url, filename, start):
-    obj = requests.get(url,headers,stream = True)
-    f = open(filename,"ab+")
-    f.seek(start)
-    f.write(obj.content)
-    f.close()
+    def stop(self):
+        self._stop_event.set()
 
-def download(data):
-    response_obj = requests.head(data['url'])
-    file_name = data['name']
-    # print(response_obj.headers)
-    file_size = int(response_obj.headers['content-length'])
-    # print(file_size)
+    def stopped(self):
+        return self._stop_event.is_set()
 
-    if file_size == 0:
-        print("Invalid URL")
-        return
+class Download():
+    """
+    Class for downloading content from the web more than the speed of light! (jk)
+    """
+    def __init__(self, url, filename="Default"):
+        self._cores = psutil.cpu_count()
+        self.url = url
+        self.saveas = filename
 
-    path = os.path.expanduser('~') + "/Downloads"
-    os.chdir(path)
+    def get_cores(self):
+        """
+        Function to return the number of cores.
+        """
+        return self._cores
 
-    chunk = file_size // cores
-    print("chunck: ",chunk)
+    def _download_chunk(self, headers, start):
+        obj = requests.get(self.url,headers,stream = True)
+        f = open(self.saveas,"ab+")
+        f.seek(start)
+        f.write(obj.content)
+        f.close()
 
-    for i in range(cores):
-        start = chunk*i
-        end = start + chunk
-        if i == cores-1:
-            end = file_size
-        # print(start,end)
-        headers = {'Range': 'bytes=%d-%d' % (start, end)}
-        thread = threading.Thread(target=download_chunk, args= (headers,data['url'],file_name,start))
-        thread.setDaemon(True)
-        thread.start()
+    def download(self):
+        """
+        Method for downloading the given content.
+        """
+        response_obj = requests.head(self.url)
+        file_name = self.saveas
+        file_size = int(response_obj.headers['content-length'])
+        self._file_size = file_size
+        if file_size == 0:
+            raise ValueError('File Size is zero, hence probably an invalid URL.')
 
-    main = threading.current_thread()
-    for t in threading.enumerate():
-        if t is main:
-             continue
-        t.join()
+        path = os.path.expanduser('~') + "/Downloads"
+        os.chdir(path)
+        chunk = file_size // self._cores
+        self._chunksize = chunk
 
+        for i in range(self._cores):
+            start = chunk*i
+            end = start + chunk
+            if i == self._cores-1:
+                end = file_size
+            # print(start,end)
+            headers = {'Range': 'bytes=%d-%d' % (start, end)}
+            thread = threading.Thread(target=self._download_chunk, args= (headers, start))
+            thread.setDaemon(True)
+            thread.start()
 
-if __name__ == '__main__':
-    data = get_info()
-    try:
-        download(data)
-        print("Downloaded")
-    except:
-        print("Some error occured")
+        main = threading.current_thread()
+        for t in threading.enumerate():
+            if t is main:
+                 continue
+
+    def get_chunk_size():
+        return self._chunksize
+
+    def get_filesize():
+        return self._file_size
