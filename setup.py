@@ -25,9 +25,9 @@ setup(
     ],
     python_requires=">=3.5",
     install_requires=[
-        "numpy",
-        "beautifulsoup4>=4.5.3",
         "requests",
+        "threading",
+        "psutil",
     ],
     extras_require={
         'dev': [
