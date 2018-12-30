@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 
 # https://packaging.python.org/guides/single-sourcing-package-version/
 version = {}
-with open(os.path.join("src", "LoadPy", "__init__.py")) as fp:
+with open(os.path.join("src", "loadpy", "__init__.py")) as fp:
     exec(fp.read(), version)
 
 
@@ -16,7 +16,7 @@ setup(
     description="Python package for Downloading Files in a blink of the eye",
     author="Shreyas Bapat",
     author_email="contact@shreyasb.com",
-    url="http://shreyasb.com/",
+    url="https://shreyasb.com/",
     download_url="https://github.com/JhaPrajjwal/Download-Manager-Python",
     license="MIT",
     keywords=[
