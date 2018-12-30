@@ -17,7 +17,7 @@ setup(
     author="Shreyas Bapat",
     author_email="contact@shreyasb.com",
     url="https://shreyasb.com/",
-    download_url="https://github.com/JhaPrajjwal/Download-Manager-Python",
+    download_url="https://github.com/loadpy/loadpy",
     license="MIT",
     keywords=[
         "download", "threads", "idm",
@@ -35,7 +35,7 @@ setup(
             "pytest-cov",
             "pycodestyle",
             "sphinx",
-            "sphinx_rtd_theme",
+            "alabaster",
             "nbsphinx",
             "ipython>=5.0",
             "jupyter-client",
