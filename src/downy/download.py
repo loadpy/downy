@@ -71,6 +71,7 @@ class Download():
         for t in threading.enumerate():
             if t is main:
                  continue
+            t.join()
 
     def get_chunk_size():
         return self._chunksize
