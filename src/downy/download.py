@@ -18,6 +18,8 @@ class StoppableThread(threading.Thread):
     def stopped(self):
         return self._stop_event.is_set()
 
+
+
 class Download():
     """
     Class for downloading content from the web more than the speed of light! (jk)
@@ -40,19 +42,33 @@ class Download():
         f.write(obj.content)
         f.close()
 
-    def download(self):
+    def download(self,s_thread = False):
         """
         Method for downloading the given content.
         """
         response_obj = requests.head(self.url)
         file_name = self.saveas
+
+        if 'content-length' not in response_obj.headers.keys():
+            raise ValueError('Invalid URL.')
+
         file_size = int(response_obj.headers['content-length'])
         self._file_size = file_size
         if file_size == 0:
-            raise ValueError('File Size is zero, hence probably an invalid URL.')
+            raise ValueError('Download Error: File Size is 0kB, either the file is too small or the URL is invalid.')
+
 
         path = os.path.expanduser('~') + "/Downloads"
         os.chdir(path)
+
+        # Single thread
+        if s_thread == True:
+            headers = {'Range': 'bytes=%d-%d' % (0, file_size)}
+            self._download_chunk(headers,0)
+            return
+
+
+        # multi-thread
         chunk = file_size // self._cores
         self._chunksize = chunk
 
@@ -72,6 +88,8 @@ class Download():
             if t is main:
                  continue
             t.join()
+
+
 
     def get_chunk_size():
         return self._chunksize
