@@ -24,10 +24,11 @@ class Download():
     """
     Class for downloading content from the web more than the speed of light! (jk)
     """
-    def __init__(self, url, filename="Default"):
+    def __init__(self, url, filename="Default",path="/Downloads"):
         self._cores = psutil.cpu_count()
         self.url = url
         self.saveas = filename
+        self.path = path
 
     def get_cores(self):
         """
@@ -47,7 +48,6 @@ class Download():
         Method for downloading the given content.
         """
         response_obj = requests.head(self.url)
-        file_name = self.saveas
 
         if 'content-length' not in response_obj.headers.keys():
             raise ValueError('Invalid URL.')
@@ -58,7 +58,7 @@ class Download():
             raise ValueError('Download Error: File Size is 0kB, either the file is too small or the URL is invalid.')
 
 
-        path = os.path.expanduser('~') + "/Downloads"
+        path = os.path.expanduser('~') + self.path
         os.chdir(path)
 
         # Single thread
